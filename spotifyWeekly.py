@@ -83,7 +83,6 @@ def save_discover_weekly():
         song_uris.append(song_uri)
 
     # add the tracks to the Saved Weekly playlist
-    user_id = sp.current_user()['id']
     sp.user_playlist_add_tracks(user_id, saved_weekly_playlist_id, song_uris, None)
 
     # return a success message
