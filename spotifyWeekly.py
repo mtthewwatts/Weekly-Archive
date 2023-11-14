@@ -3,6 +3,7 @@ import spotipy
 import time 
 from spotipy.oauth2 import SpotifyOAuth
 from flask import Flask, request, url_for, session, redirect
+from __main__ import __name__
 
 #inialize Flask app
 app = Flask(__name__)
@@ -56,8 +57,10 @@ def save_discover_weekly():
         print("User not logged in")
         return redirect('/')
 
-    # create a Spotipy instance with the access token
+        # create a Spotipy instance with the access token
     sp = spotipy.Spotify(auth=token_info['access_token'])
+    user_id = sp.current_user()['id']
+    saved_weekly_playlist_id = None
 
     # get the user's playlists
     current_playlists = sp.current_user_playlists()['items']
@@ -66,14 +69,18 @@ def save_discover_weekly():
 
     # find the Discover Weekly and Saved Weekly playlists
     for playlist in current_playlists:
-        if(playlist['name'] == 'Discover Weekly'):
+        if(playlist['name'] == "Discover Weekly"):
             discover_weekly_playlist_id = playlist['id']
-        if(playlist['name'] == 'Saved Weekly'):
+        if(playlist['name'] == "Discover Weekly Archive"):
             saved_weekly_playlist_id = playlist['id']
 
     # if the Discover Weekly playlist is not found, return an error message
     if not discover_weekly_playlist_id:
         return 'Discover Weekly not found.' 
+
+    if not saved_weekly_playlist_id:
+        new_playlist = sp.user_playlist_create(user_id, "Discover Weekly Archive", True)
+        saved_weekly_playlist_id = new_playlist['id']
 
     # get the tracks from the Discover Weekly playlist
     discover_weekly_playlist = sp.playlist_items(discover_weekly_playlist_id)
