@@ -1,6 +1,22 @@
-I would always forget to forget to listen to my Discover Weekly playlist.
+# 🎧 Discover Weekly Archiver
 
-In order to solve this problem for myself, I programmed a Python script that uses the Spotipy, Time, and Flask libraries
-in order to automatically move every song from my “Discover Weekly” playlist every Monday to a separate playlist known as “Discover Weekly Archive”. 
+> *Never forget to listen to your Discover Weekly again!*
 
-This allows me to have a playlist filled with personalized music suggestions whenever I want to expand my music taste!
+## 💡 Problem
+
+I would always forget to listen to my **Discover Weekly** playlist on time — and by the next week, it would be gone. 
+
+## 🛠️ Solution
+
+To solve this, I wrote a Python script that:
+
+* 🐍 Uses **Spotipy**, **Time**, and **Flask**
+* 📆 Runs **every Monday**
+* 🎶 Automatically **moves songs** from my “Discover Weekly” playlist
+* 📁 Archives them into a new playlist called **“Discover Weekly Archive”**
+
+## ✅ Outcome
+
+Now I have a playlist filled with **weekly music recommendations**, saved forever!
+Whenever I feel like exploring new music or catching up on what I missed, it's all there. 🌟🎵
+
